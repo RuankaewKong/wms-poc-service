@@ -1,31 +1,15 @@
-import { ProductDL } from '../product/product.dl';
+import { AddressDL } from '../address/address.dl';
+import { OrderItemDL } from '../orderItem/orderItem.dl';
 
 export class OrderDL {
   id: number;
   orderId: string;
-  // addressInfo: AddressInfo;
-  // orderItem: OrderItem;
+  addressInfo: AddressDL;
+  orderItem: OrderItemDL;
   quantity: number;
   amount: number;
   status: string;
   createAt: Date;
   updateAt: Date;
   deleteAt: Date;
-}
-
-export class OrderItem {
-  id?: number;
-  product: ProductDL;
-  qty: number;
-  total: number;
-}
-
-export class AddressInfo {
-  name: string;
-  street: string;
-  district: string;
-  city: string;
-  province: string;
-  postcode: string;
-  phone: string;
 }

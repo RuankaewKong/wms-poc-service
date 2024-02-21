@@ -1,9 +1,11 @@
 import { ReturnCourseInfo } from 'src/types/delivery.type';
+import { OrderItem } from '../get-wms-delivery/delivery.dto';
 
 export interface ShipmentRequest {
   id: number;
   orderId: string;
   addressInfo: AddressInfo;
+  orderItem: OrderItem;
   quantity: number;
   amount: number;
   phone: string;

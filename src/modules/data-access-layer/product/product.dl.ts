@@ -1,4 +1,4 @@
-export interface ProductDL {
+export class ProductDL {
   id?: number;
   image?: string;
   barcode: string;
@@ -10,4 +10,10 @@ export interface ProductDL {
   createAt?: Date;
   updateAt?: Date;
   deleteAt?: Date;
+}
+
+export class ProductItemDL {
+  barcode: string;
+  bookNo: string;
+  bookName: string;
 }

@@ -86,7 +86,6 @@ export enum Warehouse {
 
 export interface AddressInfo {
   name: string;
-  address?: string;
   street: string;
   district: string;
   city: string;

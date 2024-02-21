@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   Index,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ProductEntity } from '../product/product.entity';
@@ -13,12 +13,12 @@ export class OrderItemEntity {
   @Index()
   id: number;
 
-  @ManyToOne(() => ProductEntity)
-  products: ProductEntity;
+  @OneToMany(() => ProductEntity, (item) => item.orderItem)
+  products: ProductEntity[];
 
   @Column({ name: 'Quantity' })
   qty: number;
 
-  @Column({ name: ' Total' })
-  total: number;
+  @Column({ name: ' Price' })
+  price: number;
 }

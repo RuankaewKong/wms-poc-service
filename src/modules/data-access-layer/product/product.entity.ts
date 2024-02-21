@@ -1,10 +1,13 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   Index,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { OrderItemEntity } from '../orderItem/orderItem.entity';
 
 @Entity({ name: 'Product' })
 export class ProductEntity {
@@ -30,6 +33,12 @@ export class ProductEntity {
   @Column({ name: 'Quantity' })
   quantity: number;
 
+  // @OneToMany(() => OrderItemEntity, (orderItem) => orderItem.product)
+  // orderItems: OrderItemEntity[];
+
+  @ManyToOne(() => OrderItemEntity)
+  orderItem: OrderItemEntity;
+
   @Column({ name: 'Status' })
   status: string;
 
@@ -39,6 +48,6 @@ export class ProductEntity {
   @CreateDateColumn({ name: 'UpdateAt' })
   updateAt: Date;
 
-  @Column({ name: 'DeleteAt' })
+  @DeleteDateColumn({ name: 'DeleteAt' })
   deleteAt: Date;
 }

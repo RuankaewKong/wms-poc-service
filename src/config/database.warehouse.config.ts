@@ -5,6 +5,7 @@ import { AddressEntity } from 'src/modules/data-access-layer/address/address.ent
 import { OrderEntity } from 'src/modules/data-access-layer/delivery/delivery.entity';
 import { OrderItemEntity } from 'src/modules/data-access-layer/orderItem/orderItem.entity';
 import { ProductEntity } from 'src/modules/data-access-layer/product/product.entity';
+import { UserEntity } from 'src/modules/data-access-layer/users/user.entity';
 
 @Injectable()
 export class DatabaseConfig implements TypeOrmOptionsFactory {
@@ -18,7 +19,13 @@ export class DatabaseConfig implements TypeOrmOptionsFactory {
       password: this.configService.get<string>('DB_PASSWORD'),
       synchronize: this.configService.get<boolean>('DB_SYNC'),
       database: 'point-engine-intern',
-      entities: [ProductEntity, OrderEntity, AddressEntity, OrderItemEntity],
+      entities: [
+        ProductEntity,
+        OrderEntity,
+        AddressEntity,
+        OrderItemEntity,
+        UserEntity,
+      ],
     } as TypeOrmModuleOptions;
   }
 }

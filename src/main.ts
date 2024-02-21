@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 
 async function bootstrap() {
   const port = process.env.SERVER_PORT ?? 8000;
@@ -11,6 +11,9 @@ async function bootstrap() {
   app.enableVersioning({
     type: VersioningType.URI,
   });
+
+  // Validate DTO class
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(port);
 }

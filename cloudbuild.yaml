@@ -1,0 +1,31 @@
+steps:
+  - name: 'docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/warehouse-service/warehouse-service'
+      - '.'
+    id: 'build-docker'
+  - name: 'docker'
+    args:
+      - 'push'
+      - 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/warehouse-service/warehouse-service'
+    id: 'push-docker'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    waitFor: ['build-docker', 'push-docker']
+    args:
+      - 'run'
+      - 'deploy'
+      - 'warehouse-service'
+      - '--image'
+      - 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/warehouse-service/warehouse-service'
+      - '--region=asia-southeast1'
+      - '--cpu=1'
+      - '--memory=256Mi'
+      - '--vpc-egress=all-traffic'
+      - '--vpc-connector=itapp-connector-sg'
+      - '--service-account=warehouse-service@$PROJECT_ID.iam.gserviceaccount.com'
+      - '--platform'
+      - 'managed'
+      - --allow-unauthenticated
